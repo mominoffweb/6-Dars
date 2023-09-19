@@ -8,17 +8,6 @@ import axios from "axios";
 
 const carouselImages = [hero1, hero2, hero3, hero4];
 function Hero() {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    axios
-      .get(
-        "https://strapi-store-server.onrender.com/api/products?featured=true"
-      )
-      .then((res) => {
-        setData(res.data.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
   return (
     <div className="grid lg:grid-cols-2 gap-24 items-center py-20">
       <div>
