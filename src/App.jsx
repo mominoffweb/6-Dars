@@ -21,6 +21,7 @@ import { loader as singleProductLaoder } from "./Pages/SingleProduct";
 import { loader as productsLaoder } from "./Pages/Products";
 
 function App() {
+
   const routes = createBrowserRouter([
     {
       path: "/",
@@ -45,7 +46,7 @@ function App() {
           path: "products",
           element: <Products />,
           loader: productsLaoder,
-          errorElement: <ErrorElement />, 
+          errorElement: <ErrorElement />,
         },
         {
           path: "products/:id",
@@ -54,7 +55,8 @@ function App() {
           loader: singleProductLaoder,
         },
         {
-          path: "cart",
+
+          path: "cart", 
           element: <Cart />,
         },
         {
@@ -75,7 +77,9 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={routes} />;
+  return (
+      <RouterProvider router={routes} />
+  )
 }
 
 export default App;

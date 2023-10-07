@@ -8,3 +8,5 @@ export { default as FeaturedProducts } from "./FeaturedProducts";
 export { default as ProductsContainer } from "./ProductsContainer";
 export { default as Filter } from "./Filter";
 export { default as PaginationsContainer } from "./PaginationsContainer";
+export { default as Loading } from "./Loading";
+

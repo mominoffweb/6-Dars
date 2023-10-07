@@ -1,9 +1,9 @@
 import { useLoaderData } from "react-router-dom";
 import { formatPrice, customFetch, generateAmountOptions } from "../utils";
 import { Link } from "react-router-dom";
-
 import { useState } from "react";
-
+import { useDispatch } from "react-redux";
+import { addItem } from "../features/cart/cartSlice";
 export const loader = async ({ params }) => {
   const request = await customFetch(`/products/${params.id}`);
   return { product: request.data.data };
@@ -21,6 +21,23 @@ function SingleProduct() {
     setAmount(parseInt(e.target.value));
   };
 
+  const dispatch = useDispatch();
+
+  const cartProduct = {
+    cartID: product.id + productColor,
+    productID: product.id,
+    image,
+    title,
+    price,
+    amount,
+    productColor,
+    company,
+  };
+
+  const addToCart = () => {
+    dispatch(addItem({ product: cartProduct }));
+  };
+ 
   return (
     <section>
       <div className="text-md   breadcrumbs py-20">
@@ -39,7 +56,6 @@ function SingleProduct() {
             alt=""
             className="lg:w-full w-96 h-96 object-cover  rounded-lg"
           />
-
           <div>
             <h1 className="capitalize text-3xl font-bold">{title}</h1>
             <h3 className=" mt-3 text-neutral-content tracking-wider capitalize">
@@ -83,14 +99,14 @@ function SingleProduct() {
                 value={amount}
                 onChange={handleAmount}
               >
-                {generateAmountOptions(10)}
+                {generateAmountOptions(20)}
                 {/* <option value=""></option>
                 <option value=""></option>
                 <option value=""></option> */}
               </select>
             </div>
             <div className="mt-10">
-              <button className="btn btn-secondary btn-md">Add to bug </button>
+              <button onClick={addToCart} className="btn btn-secondary btn-md">Add to bug </button>
             </div>
           </div>
         </div>
